@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Teapot\StatusCode;
 
 class Handler extends ExceptionHandler
 {
@@ -40,12 +42,28 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $exception
+     *
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->ajax()) {
+            return response(
+                [
+                    'message' => 'Unauthenticated.',
+                    "data" => [],
+                ],
+                StatusCode::UNAUTHORIZED
+            );
+        }
+
+        return redirect()->to('/login');
     }
 }
