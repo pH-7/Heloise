@@ -41,20 +41,20 @@ class PostController extends Controller
     public function add(Request $request): RedirectResponse
     {
         $post = PostModel::create([
-            'user_id' => auth()->id(),
-            'title' => $request->title,
-            'body' => $request->body
-
+            'user_id' => auth()->user()->id,
+            'title' => $request->input('title'),
+            'body' => $request->input('body')
         ]);
 
         return redirect('/' . $post->id)
             ->with('success', 'Post added successfully!');
     }
 
-    public function update(Request $request, PostModel $post): RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
-        $post->title = $request->title;
-        $post->body = $request->body;
+        $post = PostModel::find($id);
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
         $post->save();
 
         return redirect()
@@ -62,12 +62,13 @@ class PostController extends Controller
             ->with('success', 'Post has been updated successfully!');
     }
 
-    public function delete(PostModel $post): RedirectResponse
+    public function delete($id): RedirectResponse
     {
+        $post = PostModel::find($id);
         $post->delete();
 
         return redirect()
-            ->route('home')
+            ->route('homepage')
             ->with('success', 'Post has been deleted successfully!');
     }
 }
