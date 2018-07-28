@@ -6,7 +6,7 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+//@import '~bootstrap/scss/bootstrap';
 
 // PaperCSS
 @import '~papercss/src/styles';
@@ -14,4 +14,10 @@
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+textarea {
+  width: 100%;
+  min-height: 10rem;
+  white-space: pre-line;
 }
