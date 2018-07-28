@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
+    /** @var array */
+    protected $guarded = [];
+
     // TODO: Add comments feature (didn't have time for this :))
 
     public function creator(): BelongsTo
