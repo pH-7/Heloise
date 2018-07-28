@@ -17,7 +17,7 @@
                             </div>
 
                         <div class="form-group">
-                            {!! Form::textarea('body', null, ['placeholder' => 'Be inspire! Write your thoughts...', 'class' => 'input-block', 'rows' => 6, 'cols' => 40, 'required']) !!}
+                            {!! Form::textarea('body', null, ['placeholder' => 'Be inspire! Write your thoughts...', 'class' => 'input-block', 'required']) !!}
                         </div>
 
                         {{ Form::submit('Add Post', ['class' => 'paper-btn btn-primary']) }}

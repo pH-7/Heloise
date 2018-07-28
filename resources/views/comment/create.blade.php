@@ -8,7 +8,7 @@
             {{ Form::hidden('_method', 'POST') }}
 
             <div class="form-group">
-                {!! Form::textarea('body', null, ['placeholder' => 'Want to comment on this?', 'class' => 'input-block', 'rows' => 4, 'cols' => 40, 'required']) !!}
+                {!! Form::textarea('body', null, ['placeholder' => 'Want to comment on this?', 'class' => 'input-block', 'required']) !!}
             </div>
 
             {{ Form::submit('Submit', ['class' => 'paper-btn btn-primary']) }}

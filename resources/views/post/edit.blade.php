@@ -17,7 +17,7 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::textarea('body', null, ['value' => $post->body, 'class' => 'input-block', 'rows' => 6, 'cols' => 40, 'required']) !!}
+                            {!! Form::textarea('body', null, ['value' => $post->body, 'class' => 'input-block', 'required']) !!}
                         </div>
 
                         {{ Form::submit('Update Post', ['class' => 'paper-btn btn-primary']) }}
