@@ -14,11 +14,8 @@ class CommentTest extends TestCase
 {
     use RefreshDatabase; // Import RefreshDatabase trait
 
-    public function testCommentShouldHaveCreator(): void
-    {
-        $comment = factory(CommentModel::class)->create();
-        $this->assertInstanceOf(UserModel::class, $comment->creator);
-    }
+    private const URI_POST_PATH_NAME = '/post/';
+    private const URI_COMMENT_PATH_NAME = '/comment';
 
     public function testCanUserAddComment(): void
     {
@@ -28,18 +25,16 @@ class CommentTest extends TestCase
         $post = factory(PostModel::class)->create();
         $comment = factory(CommentModel::class)->make();
 
-        $this->post('/' . $post->id . '/comment', $comment->toArray());
-        $this->get('/' . $post->id)->assertSee($comment->body);
+        $this->post(self::URI_POST_PATH_NAME . $post->id . self::URI_COMMENT_PATH_NAME, $comment->toArray());
+        $this->get(self::URI_POST_PATH_NAME . $post->id)->assertSee($comment->body);
     }
 
     public function testCanUserNotAddComment(): void
     {
         $post = factory(PostModel::class)->create();
         $comment = factory(CommentModel::class)->make();
-        $this->post('/' . $post->id . '/comment', $comment->toArray());
+        $this->post(self::URI_POST_PATH_NAME . $post->id . self::URI_COMMENT_PATH_NAME, $comment->toArray());
 
-        $this->get('/' . $post->id)->assertDontSee($comment->body);
+        $this->get(self::URI_POST_PATH_NAME . $post->id)->assertDontSee($comment->body);
     }
 }
-
-

@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class PostTest extends TestCase
 {
-    private const USER_ID = 1;
+    private const URI_POST_PATH_NAME = '/post/';
 
     public function testCanVisitorSeeHomepage(): void
     {
@@ -27,7 +27,7 @@ class PostTest extends TestCase
     {
         $post = factory(PostModel::class)->create();
 
-        $response = $this->get('/' . $post->id);
+        $response = $this->get(self::URI_POST_PATH_NAME . $post->id);
         $response->assertStatus(StatusCode::OK);
         $response->assertSee($post->title);
     }
@@ -42,7 +42,7 @@ class PostTest extends TestCase
         /** @var PostModel $post */
         $post = factory(PostModel::class)->make();
         $this->post('/post', $post->toArray());
-        $response = $this->get('/' . $post->id);
+        $response = $this->get(self::URI_POST_PATH_NAME . $post->id);
         $response->assertSee($post->title);
     }
 
@@ -61,23 +61,39 @@ class PostTest extends TestCase
 
     }
 
-    public function testCanUserNotAccessAddPostPage(): void
+    public function testCanUserEditPost(): void
     {
-        $this->get('/blog/create')
-            ->assertRedirect('/login');
+        $this->withoutExceptionHandling();
+
+        $user = factory(UserModel::class)->create();
+        $this->be($user);
+
+        /** @var PostModel $post */
+        $post = factory(PostModel::class)->make();
+        $this->post('/post', $post->toArray());
+        $response = $this->get(self::URI_POST_PATH_NAME . $post->id);
+        $response->assertSee($post->title);
     }
 
-    public function testCanPostAddComment(): void
+    public function testCanUserNotEditPost(): void
     {
+        $this->withoutExceptionHandling();
+
+        $this->expectException(AuthenticationException::class);
+
+        factory(UserModel::class)->create();
+
         /** @var PostModel $post */
-        $post = factory(PostModel::class)->create();
+        $post = factory(PostModel::class)->make();
 
-        $post->addComment([
-            'body' => 'Blablabla',
-            'user_id' => self::USER_ID
-        ]);
+        $this->post(self::URI_POST_PATH_NAME, $post->toArray());
 
-        $this->assertCount(1, $post->comment);
+    }
+
+    public function testCanUserNotAccessToCreatePostPage(): void
+    {
+        $this->get(self::URI_POST_PATH_NAME . 'create')
+            ->assertRedirect('/login');
     }
 
     public function testCanVisitorSeeCommentWhenVisitPost(): void
@@ -87,7 +103,7 @@ class PostTest extends TestCase
         $comment = factory(CommentModel::class)
             ->create(['post_id' => $post->id]);
 
-        $response = $this->get('/' . $post->id);
+        $response = $this->get(self::URI_POST_PATH_NAME . $post->id);
 
         $response->assertSee($comment->body);
     }
