@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use App\Models\Post as PostModel;
 use Teapot\StatusCode;
 use Tests\TestCase;
 
