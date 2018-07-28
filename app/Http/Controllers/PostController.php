@@ -94,7 +94,7 @@ class PostController extends Controller
 
         return redirect()
             ->route('homepage')
-            ->with('success', 'Post has been updated successfully!');
+            ->with('success', 'Post updated!');
     }
 
     /**
@@ -107,6 +107,6 @@ class PostController extends Controller
 
         return redirect()
             ->route('homepage')
-            ->with('success', 'Post has been deleted successfully!');
+            ->with('success', 'Post deleted!');
     }
 }
