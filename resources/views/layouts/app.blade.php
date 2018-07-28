@@ -15,16 +15,15 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div class="row flex-center">
-        <div class="col-10 col">
-            <header>
-                @include('partials.navbar')
-            </header>
-
+    <header>
+        @include('partials._navbar')
+    </header>
+            <div class="row flex-center">
+                <div class="col-10 col">
             @yield ('content')
         </div>
     </div>
-    @include('partials/footer')
+    @include('partials._footer')
 
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>
