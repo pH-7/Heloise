@@ -18,9 +18,9 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function storeComment(string $comment): void
+    public function storeComment(array $attributes): void
     {
-        $this->comment()->create($comment);
+        $this->comment()->create($attributes);
     }
 
     public function creator(): BelongsTo
