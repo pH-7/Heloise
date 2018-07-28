@@ -20,8 +20,12 @@ class CommentController extends Controller
         return view('comment.create');
     }
 
-    public function store(PostModel $post, Request $request): void
+    public function store(Request $request, PostModel $post): void
     {
+        $this->validate($request, [
+            'body' => 'required',
+        ]);
+
         $post->storeComment(
             [
                 'body' => $request->get('body'),
