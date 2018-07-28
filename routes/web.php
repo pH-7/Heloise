@@ -1,11 +1,10 @@
 <?php
 
 Route::get('/', 'PostController@index')->name('homepage');
-Route::view('/add','post.add')->middleware('auth');
+Route::get('/home', function () {
+    return redirect('/');
+});
+
 Auth::routes();
-Route::get('/{post}','PostController@show');
-Route::post('/{post}/comment','CommentController@add');
-Route::post('/add','PostController@add');
-Route::get('/edit','PostController@edit')->name('post.edit');
-Route::post('/update/{id}','PostController@update');
-Route::post('/delete/{id}','PostController@delete')->name('post.delete');
+Route::resource('/post','PostController', ['except' => ['index']]);
+Route::post('/{id}/comment','CommentController@store')->where('id', '[0-9]+');

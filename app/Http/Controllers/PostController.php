@@ -28,23 +28,24 @@ class PostController extends Controller
         return view('post.index', compact('posts'));
     }
 
-
-    public function show($id): View
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(): View
     {
-        $post = PostModel::find($id);
-
-        return view('post.show', compact('post'));
+        return view('post.create');
     }
 
-    public function edit($id): View
-    {
-        $post = PostModel::find($id);
-
-        return view('post.edit', ['post' => $post]);
-    }
-
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request): RedirectResponse
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
         $post = PostModel::create([
             'user_id' => auth()->user()->id,
             'title' => $request->input('title'),
@@ -55,8 +56,36 @@ class PostController extends Controller
             ->with('success', 'Post added successfully!');
     }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show($id): View
+    {
+        $post = PostModel::find($id);
+
+        return view('post.show', compact('post'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id): View
+    {
+        $post = PostModel::find($id);
+
+        return view('post.edit', ['post' => $post]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, $id): RedirectResponse
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
         $post = PostModel::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
@@ -67,6 +96,9 @@ class PostController extends Controller
             ->with('success', 'Post has been updated successfully!');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy($id): RedirectResponse
     {
         $post = PostModel::find($id);
