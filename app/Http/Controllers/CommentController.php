@@ -12,7 +12,7 @@ class CommentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only('add');
+        $this->middleware('auth');
     }
 
     public function create(): View
