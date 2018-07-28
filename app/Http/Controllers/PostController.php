@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Post as PostModel;
-use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class PostController extends Controller
 {
@@ -21,12 +21,11 @@ class PostController extends Controller
         );
     }
 
-    public function index(Request $request, PostModel $post): View
+    public function index(): View
     {
-        $posts = PostModel::orderBy('created_at', 'desc')
-            ->latest()
+        $posts = PostModel::latest()
             ->paginate(self::ITEMS_PER_PAGE);
-        
+
         return view('post.index', compact('posts'));
     }
 
