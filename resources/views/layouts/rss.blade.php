@@ -8,6 +8,7 @@
     <channel>
         <title>{{ config('app.name', 'My Blog') }}</title>
         <link>{{ url()->current() }}</link>
+        <description>The latest blog posts</description>
         @yield('content')
     </channel>
 </rss>
