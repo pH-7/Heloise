@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Post a Comment!')
+
 @section('content')
     <div class="row">
         <div class="col-md-8">
