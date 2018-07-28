@@ -14,10 +14,10 @@
         <div class="collapsible-body">
             <ul class="inline">
                 <li class="active"><a href="{{ route('homepage') }}">Home</a></li>
-                @if (!auth()->check())
+                @guest
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
-                @endif
+                @endguest
                 <li><a href="{{ action('PostController@create' }}">Add Post</a></li>
             </ul>
         </div>

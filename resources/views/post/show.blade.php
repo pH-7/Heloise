@@ -8,7 +8,7 @@
                 <div class="collapsible-body">{{ $post->body }}</div>
             </article>
         </div>
-        @if (auth()->check())
+        @auth
             <hr />
             <div class="text-center">
                 <a href="{{ route('edit', ['id' => $post->id]) }}">
@@ -21,7 +21,7 @@
                 {{ Form::submit('Delete Post', ['class' => 'paper-btn btn-danger']) }}
                 {!! Form::close() !!}
             </div>
-        @endif
+        @endauth
 
         @include('comment._thread')
     </div>
