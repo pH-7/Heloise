@@ -10,7 +10,7 @@
             <article class="article">
                 {{-- <div class="panel-heading">{{ $comment->created_at }}</div> --}}
                 <div class="article-meta">
-                    {{ $comment->creator->name }} &bull; {{ $comment->created_at->diffForHumans() }}
+                    {{ $comment->creator->name }} • {{ $comment->created_at->diffForHumans() }}
                 </div>
                 <div class="text-center">
                     {{ $comment->body }}
