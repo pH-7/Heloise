@@ -44,7 +44,7 @@ class PostController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|max:50',
             'body' => 'required'
         ]);
 
@@ -84,7 +84,7 @@ class PostController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|max:50',
             'body' => 'required'
         ]);
 
