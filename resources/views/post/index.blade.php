@@ -12,7 +12,9 @@
                                 <div class="collapsible-body">{{ $post->body }}</div>
                             </article>
                             @empty
-                                <h4 class="text-center">Oops! Nothing for the moment. Come back soon!</h4>
+                                <h4 class="text-center">
+                                    Oops! Nothing for the moment. Come back soon!
+                                </h4>
                         @endforelse
                     </div>
                 </div>

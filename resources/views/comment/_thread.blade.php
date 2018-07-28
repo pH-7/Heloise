@@ -13,7 +13,9 @@
                     <div class="article-meta">
                         {{ $comment->creator->name }} &bull; {{ $comment->created_at->diffForHumans() }}
                     </div>
-                    <div class="text-center">{{ $comment->body }}</div>
+                    <div class="text-center">
+                        {{ $comment->body }}
+                    </div>
                 </article>
             @empty
                 <p class="text-center">
