@@ -14,8 +14,11 @@
         <div class="collapsible-body">
             <ul class="inline">
                 <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ url('add') }}">Add Post</a></li>
-                <li><a href="{{ url('edit') }}">Edit post</a></li>
+                @if (!auth()->check())
+                    <li><a href="{{ url('login') }}">Login</a></li>
+                    <li><a href="{{ url('register') }}">Register</a></li>
+                @endif
+                <li><a href="{{ action('PostController@create' }}">Add Post</a></li>
             </ul>
         </div>
     </div>
