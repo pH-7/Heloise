@@ -6,26 +6,20 @@
             </strong>
         </p>
 
-        @if (auth()->check())
-            @forelse($post->comment as $comment)
-                <article class="article">
-                    {{-- <div class="panel-heading">{{ $comment->created_at }}</div> --}}
-                    <div class="article-meta">
-                        {{ $comment->creator->name }} &bull; {{ $comment->created_at->diffForHumans() }}
-                    </div>
-                    <div class="text-center">
-                        {{ $comment->body }}
-                    </div>
-                </article>
-            @empty
-                <p class="text-center">
-                    Be the first to add a comment!
-                </p>
-            @endforelse
-        @else
+        @forelse($post->comment as $comment)
+            <article class="article">
+                {{-- <div class="panel-heading">{{ $comment->created_at }}</div> --}}
+                <div class="article-meta">
+                    {{ $comment->creator->name }} &bull; {{ $comment->created_at->diffForHumans() }}
+                </div>
+                <div class="text-center">
+                    {{ $comment->body }}
+                </div>
+            </article>
+        @empty
             <p class="text-center">
-                You need to <a href="{{ route('login') }}">sign in</a> in order to comment this.
+                Be the first to add a comment!
             </p>
-        @endif
+        @endforelse
     </div>
 </div>
