@@ -8,15 +8,16 @@
                     <div class="panel-heading"><h1>Add Post</h1></div>
 
                     <div class="collapsible-body">
-                        {!! Form::open(['action' => 'PostController@add']) !!}
+                        {!! Form::open(['action' => 'PostController@store']) !!}
                         {{ Form::token() }}
+                        {{ Form::hidden('_method', 'POST') }}
 
                             <div class="form-group">
-                                {{  Form::text('title', null, ['class' => 'input-block']) }}
+                                {{ Form::text('title', null, ['placeholder' => 'What are you writing about..?', 'class' => 'input-block', 'required']) }}
                             </div>
 
                         <div class="form-group">
-                            {!! Form::textarea('body', null, ['placeholder' => 'Be inspire! Write your thoughts...', 'class' => 'input-block', 'rows' => 6, 'cols' => 40]) !!}
+                            {!! Form::textarea('body', null, ['placeholder' => 'Be inspire! Write your thoughts...', 'class' => 'input-block', 'rows' => 6, 'cols' => 40, 'required']) !!}
                         </div>
 
                         {{ Form::submit('Add Post', ['class' => 'paper-btn btn-primary']) }}
