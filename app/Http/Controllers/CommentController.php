@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post as PostModel;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CommentController extends Controller
 {
@@ -12,9 +13,14 @@ class CommentController extends Controller
         $this->middleware('auth')->only('add');
     }
 
+    public function create(): View
+    {
+        return view('comment.create');
+    }
+
     public function store(PostModel $post, Request $request): void
     {
-        $post->addComment(
+        $post->storeComment(
             [
                 'body' => $request->get('body'),
                 'user_id' => auth()->id()
