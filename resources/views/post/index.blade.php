@@ -8,7 +8,7 @@
                     <div class="collapsible">
                         @forelse($posts as $post)
                             <article>
-                                <h3><a class="text-lead" href="/{{ $post->id }}">{{ $post->title }}</a></h3>
+                                <h3><a class="text-lead" href="{{ action('PostController@show', [$post->id]) }}">{{ $post->title }}</a></h3>
                                 <div class="collapsible-body">{{ $post->body }}</div>
                             </article>
                             @empty
