@@ -10,3 +10,4 @@ Route::get('/home', function () {
 Auth::routes();
 Route::resource('/post','PostController', ['except' => ['index']]);
 Route::post('/post/{id}/comment','CommentController@store')->where('id', '[0-9]+');
+Route::get('/feed', 'PostFeedController@index');
