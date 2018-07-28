@@ -26,19 +26,21 @@ class PostController extends Controller
     }
 
 
-    public function show(Request $request, PostModel $post): View
+    public function show($id): View
     {
-        return view('posts.show', ['post' => $post]);
+        $post = PostModel::find($id);
+
+        return view('post.show', compact('post'));
     }
 
-    public function edit(Request $request, int $id): View
+    public function edit($id): View
     {
         $post = PostModel::find($id);
 
         return view('post.edit', ['post' => $post]);
     }
 
-    public function add(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $post = PostModel::create([
             'user_id' => auth()->user()->id,
@@ -62,7 +64,7 @@ class PostController extends Controller
             ->with('success', 'Post has been updated successfully!');
     }
 
-    public function delete($id): RedirectResponse
+    public function destroy($id): RedirectResponse
     {
         $post = PostModel::find($id);
         $post->delete();

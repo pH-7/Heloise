@@ -12,7 +12,7 @@ class CommentController extends Controller
         $this->middleware('auth')->only('add');
     }
 
-    public function add(PostModel $post, Request $request): void
+    public function store(PostModel $post, Request $request): void
     {
         $post->addComment(
             [
