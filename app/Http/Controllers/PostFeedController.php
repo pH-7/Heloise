@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post as PostModel;
-use Illuminate\Filesystem\Cache;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 use Teapot\StatusCode;
 
 class PostFeedController extends Controller
