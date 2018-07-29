@@ -1,4 +1,4 @@
-@extends('layouts.rss)
+@extends('layouts.rss')
 
 @section('content')
     <item>
