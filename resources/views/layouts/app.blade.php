@@ -20,8 +20,8 @@
         @include('partials._navbar')
     </header>
 
-    <div class="row flex-spaces child-borders">
-        <div class="col-md-10">
+    <div class="row flex-spaces flex-center">
+        <div class="col col-md-10 child-borders">
             @include('partials._alert')
             @yield ('content')
         </div>

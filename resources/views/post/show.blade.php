@@ -4,10 +4,10 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <article>
-                <h3>{{ $post->title }}</h3>
-                <div class="collapsible-body">{{ $post->body }}</div>
+                <h3 class="article-title text-center">{{ $post->title }}</h3>
+                <div class="collapsible-body text-center">{{ $post->body }}</div>
             </article>
         </div>
         @auth
