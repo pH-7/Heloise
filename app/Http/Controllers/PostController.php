@@ -94,7 +94,7 @@ class PostController extends Controller
         $post->save();
 
         return redirect()
-            ->route('homepage')
+            ->route('post.edit', $id)
             ->with('success', 'Post updated!');
     }
 
