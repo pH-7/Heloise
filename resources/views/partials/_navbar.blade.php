@@ -1,6 +1,10 @@
-<nav class="border fixed split-nav">
+<nav class="border split-nav">
     <div class="nav-brand">
-        <h3><a href="{{ route('homepage') }}">{{ config('app.name', 'My Blog') }}</a></h3>
+        <h3>
+            <a href="{{ route('homepage') }}">
+                {{ config('app.name', 'My Blog') }}
+            </a>
+        </h3>
     </div>
     <div class="collapsible">
         <input id="collapsible1" type="checkbox" name="collapsible1">

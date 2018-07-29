@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <p class="text-center">
+    <div class="col-md-8 flex-center">
+        <p>
             <strong>
                 <a href="{{ route('comment.create', ['postId' => $post->id]) }}" rel="nofollow">Add a Comment</a>
             </strong>

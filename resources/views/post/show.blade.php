@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row">
-        <div class="collapsible">
+        <div class="col-md-8">
             <article>
                 <h3>{{ $post->title }}</h3>
                 <div class="collapsible-body">{{ $post->body }}</div>
