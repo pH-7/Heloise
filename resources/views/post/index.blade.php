@@ -12,9 +12,16 @@
                                 <div class="collapsible-body">{{ $post->body }}</div>
                             </article>
                             @empty
-                                <h4 class="text-center">
-                                    Oops! Nothing for the moment. Come back soon!
-                                </h4>
+                                @auth
+                                    <h4 class="text-center">
+                                        ⭐ <a href="{{ route('post.create') }}">Create A Post</a> ⭐
+                                    </h4>
+                                @endauth
+                                @guest
+                                    <h4 class="text-center">
+                                        Oops! Nothing for the moment. Come back soon!
+                                    </h4>
+                                @endguest
                         @endforelse
                     </div>
                 </div>
