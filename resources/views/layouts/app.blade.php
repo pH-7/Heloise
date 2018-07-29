@@ -13,7 +13,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet">
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-    <link rel="alternate" type="application/rss+xml" title="Latest blog posts" href="{{ action('PostFeedController@index') }}" />
+    <link rel="alternate" type="application/rss+xml" title="Latest blog posts" href="{{ route('post.feed.index') }}" />
 </head>
 <body>
     <header>
