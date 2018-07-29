@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment as CommentModel;
+use App\Models\Post as PostModel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -21,13 +21,13 @@ class CommentController extends Controller
         return view('comment.create', ['post_id' => $postId]);
     }
 
-    public function store(Request $request, $postId): RedirectResponse
+    public function store(Request $request, PostModel $post, $postId): RedirectResponse
     {
         $this->validate($request, [
             'body' => 'required',
         ]);
 
-        CommentModel::create(
+        $post->storeComment(
             [
                 'post_id' => $postId,
                 'user_id' => auth()->id(),

@@ -18,6 +18,11 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function storeComment(array $attributes): void
+    {
+        $this->comment()->create($attributes);
+    }
+
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
