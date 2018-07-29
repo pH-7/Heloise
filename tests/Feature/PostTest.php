@@ -41,7 +41,7 @@ class PostTest extends TestCase
 
         /** @var PostModel $post */
         $post = factory(PostModel::class)->make();
-        $this->post('/post', $post->toArray());
+        $this->post(self::URI_POST_PATH_NAME, $post->toArray());
         $response = $this->get(self::URI_POST_PATH_NAME . $post->id);
         $response->assertSee($post->title);
     }
@@ -57,7 +57,7 @@ class PostTest extends TestCase
         /** @var PostModel $post */
         $post = factory(PostModel::class)->make();
 
-        $this->post('/post', $post->toArray());
+        $this->post(self::URI_POST_PATH_NAME, $post->toArray());
 
     }
 
@@ -70,7 +70,7 @@ class PostTest extends TestCase
 
         /** @var PostModel $post */
         $post = factory(PostModel::class)->make();
-        $this->post('/post', $post->toArray());
+        $this->post(self::URI_POST_PATH_NAME, $post->toArray());
         $response = $this->get(self::URI_POST_PATH_NAME . $post->id);
         $response->assertSee($post->title);
     }
