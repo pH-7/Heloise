@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use App\Models\Comment as CommentModel;
 use App\Models\Post as PostModel;
 use App\Models\User as UserModel;
 use Illuminate\Auth\AuthenticationException;
@@ -40,7 +41,7 @@ class PostTest extends TestCase
         /** @var PostModel $post */
         $post = factory(PostModel::class)->make();
         $this->post(route('post.create'), $post->toArray());
-        $response = $this->get(route('post.create', $post->id));
+        $response = $this->get(route('post.show', $post->id));
         $response->assertSee($post->title);
     }
 
@@ -84,7 +85,7 @@ class PostTest extends TestCase
         /** @var PostModel $post */
         $post = factory(PostModel::class)->make();
 
-        $this->post(route('post.edit'), $post->toArray());
+        $this->post(route('post.edit', $post->id), $post->toArray());
 
     }
 
