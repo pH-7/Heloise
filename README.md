@@ -22,3 +22,10 @@
 3. Run `php artisan migrate:fresh --seed` to run the database migrations, with the seeds if needed.
 4. Run `npm run production`
 5. Start a local development server `php artisan serve`
+
+
+## How "Héloïse Laravel Blog" Looks Like
+
+![Add, Edit and Delete Blog Posts](_screenshots/blog-post-heloise-laravel.png)
+
+![Add Comments to Blog Posts](_screenshots/blog-add-comment.png)
