@@ -8,7 +8,7 @@ function save-project-to-repo() {
 
 declare readonly gitRemotes=(
     git@bitbucket.org:pH_7/heloise.git
-    git@gitlab.com:pH-7/heloise.git
+    git@gitlab.com:pH-7/heloise-v2.git
     git@github.com:pH-7/Heloise.git
 )
 for remote in "${gitRemotes[@]}"
