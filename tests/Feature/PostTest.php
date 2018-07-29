@@ -90,6 +90,34 @@ class PostTest extends TestCase
         $this->post(route('post.edit', $post->id), $post->toArray());
     }
 
+    public function testCanUserDeletePost(): void
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(UserModel::class)->create();
+        $this->be($user);
+
+        /** @var PostModel $post */
+        $post = factory(PostModel::class)->make();
+        $this->post(route('post.destroy', $post->id), $post->toArray());
+        $response = $this->get(route('post.destroy', $post->id));
+        $response->assertStatus(Response::HTTP_OK);
+    }
+
+    public function testCanUserNotDeletePost(): void
+    {
+        $this->withoutExceptionHandling();
+
+        $this->expectException(AuthenticationException::class);
+
+        factory(UserModel::class)->create();
+
+        /** @var PostModel $post */
+        $post = factory(PostModel::class)->make();
+
+        $this->post(route('post.destroy', $post->id), $post->toArray());
+    }
+
     public function testCanUserNotAccessToCreatePostPage(): void
     {
         $this->get(route('post.create'))
