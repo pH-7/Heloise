@@ -19,8 +19,10 @@
     <header>
         @include('partials._navbar')
     </header>
-            <div class="row flex-center">
-                <div class="col-10 col">
+
+    <div class="row flex-spaces child-borders">
+        <div class="col-md-10">
+            @include('partials._alert')
             @yield ('content')
         </div>
     </div>
