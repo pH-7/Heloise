@@ -21,3 +21,11 @@ textarea {
   min-height: 10rem;
   white-space: pre-line;
 }
+
+.inline {
+  display: inline;
+}
+
+.paper-btn.btn-primary, [type=button].btn-primary, button.btn-primary {
+  background-color: $azure-radiance;
+}
