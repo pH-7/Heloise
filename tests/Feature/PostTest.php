@@ -57,7 +57,6 @@ class PostTest extends TestCase
         $post = factory(PostModel::class)->make();
 
         $this->post(route('post.create'), $post->toArray());
-
     }
 
     public function testCanUserEditPost(): void
@@ -86,7 +85,6 @@ class PostTest extends TestCase
         $post = factory(PostModel::class)->make();
 
         $this->post(route('post.edit', $post->id), $post->toArray());
-
     }
 
     public function testCanUserNotAccessToCreatePostPage(): void
@@ -103,7 +101,6 @@ class PostTest extends TestCase
             ->create(['post_id' => $post->id]);
 
         $response = $this->get(route('post.show', $post->id));
-
         $response->assertSee($comment->body);
     }
 }
