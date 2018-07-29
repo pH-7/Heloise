@@ -24,7 +24,6 @@
                 {!! Form::close() !!}
             </div>
         @endauth
-
-        @include('comment._thread')
     </div>
+    @include('comment._thread')
 @endsection
