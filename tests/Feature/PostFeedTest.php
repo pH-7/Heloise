@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use App\Models\Post as PostModel;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 class PostFeedTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function testCanReachFeedPage(): void
     {
         $response = $this->get(route('post.feed.index'));

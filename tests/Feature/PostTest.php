@@ -8,11 +8,14 @@ use App\Models\Comment as CommentModel;
 use App\Models\Post as PostModel;
 use App\Models\User as UserModel;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 class PostTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function testCanVisitorSeeHomepage(): void
     {
         $post = factory(PostModel::class)->create();
