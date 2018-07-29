@@ -10,7 +10,6 @@
 
                 {!! Form::open(['route' => ['comment.store', $post_id]]) !!}
                 {{ Form::token() }}
-                {{ Form::hidden('_method', 'POST') }}
 
                 <div class="form-group">
                     {!! Form::textarea('body', null, ['placeholder' => 'Want to comment on this?', 'class' => 'input-block', 'required']) !!}
