@@ -1,11 +1,9 @@
-<div class="col-md-6 row">
-    @if (session('success'))
-        <p class="alert alert-success">
-            {{ session('success') }}
-        </p>
-    @elseif (session('error'))
-        <p class="alert alert-danger">
-            {{ session('error') }}
-        </p>
+@foreach (['alert-success' => 'success', 'alert-danger' => 'error'] as $cssClass => $sessName)
+    @if (session($sessName))
+        <div class="col-md-6 row">
+            <p class="alert {{ $cssClass }}">
+                {{ session($sessName) }}
+            </p>
+        </div>
     @endif
-</div>
+@endforeach
