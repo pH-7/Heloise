@@ -10,7 +10,7 @@
                     <div class="panel-heading"><h1>Add Post</h1></div>
 
                     <div class="collapsible-body">
-                        {!! Form::open(['action' => 'PostController@store']) !!}
+                        {!! Form::open(['route' => 'post.store']) !!}
                         {{ Form::token() }}
                         {{ Form::hidden('_method', 'POST') }}
 

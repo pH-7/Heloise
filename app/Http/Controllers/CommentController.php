@@ -36,7 +36,7 @@ class CommentController extends Controller
         );
 
         return redirect()
-            ->action('PostController@show', $postId)
+            ->route('post.show', $postId)
             ->with('success', 'Comment added successfully!');
     }
 }

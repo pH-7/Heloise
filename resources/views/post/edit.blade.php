@@ -10,16 +10,16 @@
                     <div class="panel-heading"><h1>Update Post</h1></div>
 
                     <div class="collapsible-body">
-                        {!! Form::open(['action' => 'PostController@update', $post->id]) !!}
+                        {!! Form::open(['route' => ['post.update', $post->id]]) !!}
                         {{ Form::token() }}
                         {{ Form::hidden('_method', 'PUT') }}
 
                         <div class="form-group">
-                            {{ Form::text('title', null, ['value' => $post->title, 'class' => 'input-block', 'required']) }}
+                            {{ Form::text('title', $post->title, ['class' => 'input-block', 'required']) }}
                         </div>
 
                         <div class="form-group">
-                            {!! Form::textarea('body', null, ['value' => $post->body, 'class' => 'input-block', 'required']) !!}
+                            {!! Form::textarea('body', $post->body, ['class' => 'input-block', 'required']) !!}
                         </div>
 
                         {{ Form::submit('Update Post', ['class' => 'paper-btn btn-primary']) }}

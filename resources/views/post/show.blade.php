@@ -13,11 +13,11 @@
         @auth
             <hr />
             <div class="text-center">
-                <a href="{{ action('PostController@edit', $post->id) }}">
-                    <button class="paper-btn">Edit Post</button>
-                </a>
+                {!! Form::open(['route' => ['post.edit',  $post->id], 'method' => 'get'])!!}
+                {{ Form::submit('Edit Post', ['class' => 'paper-btn']) }}
+                {!! Form::close() !!}
 
-                {!! Form::open(['action' => ['PostController@destroy',  $post->id]])!!}
+                {!! Form::open(['route' => ['post.destroy',  $post->id]])!!}
                 {{ Form::token() }}
                 {{ Form::hidden('_method', 'DELETE') }}
                 {{ Form::submit('Delete Post', ['class' => 'paper-btn btn-danger']) }}

@@ -54,7 +54,7 @@ class PostController extends Controller
         ]);
 
         return redirect()
-            ->action('PostController@show', $post->id)
+            ->route('post.show', $post->id)
             ->with('success', 'Post added successfully!');
     }
 

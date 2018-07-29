@@ -18,7 +18,11 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                 @endguest
-                <li><a href="{{ action('PostController@create') }}">Add Post</a></li>
+                <li>
+                    <a href="{{ route('post.create') }}">
+                        Add Post
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
