@@ -7,7 +7,7 @@ namespace Tests\Feature;
 use App\Models\Post as PostModel;
 use App\Models\User as UserModel;
 use Illuminate\Auth\AuthenticationException;
-use Teapot\StatusCode;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 class PostTest extends TestCase
@@ -17,7 +17,7 @@ class PostTest extends TestCase
         $post = factory(PostModel::class)->create();
 
         $response = $this->get('/');
-        $response->assertStatus(StatusCode::OK);
+        $response->assertStatus(Response::HTTP_OK);
         $response->assertSee($post->title);
     }
 
@@ -26,7 +26,7 @@ class PostTest extends TestCase
         $post = factory(PostModel::class)->create();
 
         $response = $this->get(route('post.show', $post->id));
-        $response->assertStatus(StatusCode::OK);
+        $response->assertStatus(Response::HTTP_OK);
         $response->assertSee($post->title);
     }
 

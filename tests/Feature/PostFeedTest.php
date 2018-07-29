@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use App\Models\Post as PostModel;
-use Teapot\StatusCode;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 class PostFeedTest extends TestCase
@@ -14,7 +14,7 @@ class PostFeedTest extends TestCase
     {
         $response = $this->get(route('post.feed.index'));
         $response->assertSee('The latest blog posts');
-        $response->assertStatus(StatusCode::OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function testCanSeeFeed(): void
@@ -22,7 +22,7 @@ class PostFeedTest extends TestCase
         $post = factory(PostModel::class)->create();
 
         $response = $this->get(route('post.feed.index'));
-        $response->assertStatus(StatusCode::OK);
+        $response->assertStatus(Response::HTTP_OK);
         $response->assertSee($post->title);
     }
 }

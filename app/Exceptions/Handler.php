@@ -2,10 +2,10 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Auth\AuthenticationException;
 use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Teapot\StatusCode;
+use Symfony\Component\HttpFoundation\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -61,7 +61,7 @@ class Handler extends ExceptionHandler
                     'message' => 'Unauthenticated.',
                     "data" => [],
                 ],
-                StatusCode::UNAUTHORIZED
+                Response::HTTP_UNAUTHORIZED
             );
         }
 

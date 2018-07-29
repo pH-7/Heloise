@@ -7,7 +7,6 @@ namespace App\Http\Controllers;
 use App\Models\Post as PostModel;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
-use Teapot\StatusCode;
 
 class PostFeedController extends Controller
 {
@@ -32,7 +31,7 @@ class PostFeedController extends Controller
             ->view(
                 'post.feed',
                 compact('posts'),
-                StatusCode::OK
+                Response::HTTP_OK
             )
             ->header(
                 'Content-Type',

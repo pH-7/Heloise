@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use Teapot\StatusCode;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 class ViewBlogPostTest extends TestCase
@@ -12,6 +12,6 @@ class ViewBlogPostTest extends TestCase
     public function testIndexBlog(): void
     {
         $response = $this->get('/');
-        $response->assertStatus(StatusCode::OK);
+        $response->assertStatus(Response::HTTP_OK);
     }
 }
