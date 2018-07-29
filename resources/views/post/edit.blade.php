@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Post')
+@section('title', 'Edit Post | ' . $post->title)
 
 @section('content')
     <div class="container">
