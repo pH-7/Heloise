@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
+use App\Models\Comment as CommentModel;
 use App\Models\Post as PostModel;
 use App\Models\User as UserModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -24,7 +25,8 @@ class PostTest extends TestCase
     public function testCanPostAddComment(): void
     {
         $post = factory(PostModel::class)->create();
-        $post->storeComment([
+        CommentModel::create([
+            'post_id' => $post->id,
             'body' => 'Blablabla',
             'user_id' => self::USER_ID
         ]);

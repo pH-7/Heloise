@@ -22,15 +22,17 @@ class CommentTest extends TestCase
         $post = factory(PostModel::class)->create();
         $comment = factory(CommentModel::class)->make();
 
-        $this->post(route('comment.create', $post->id), $comment->toArray());
+        $this->post(route('comment.store', $post->id), $comment->toArray());
+
         $this->get(route('post.show', $post->id))->assertSee($comment->body);
+        $this->assertDatabaseHas('comments', ['post_id' => $post->id]);
     }
 
     public function testCanUserNotAddComment(): void
     {
         $post = factory(PostModel::class)->create();
         $comment = factory(CommentModel::class)->make();
-        $this->post(route('comment.create', $post->id), $comment->toArray());
+        $this->post(route('comment.store', $post->id), $comment->toArray());
 
         $this->get(route('post.show', $post->id))->assertDontSee($comment->body);
     }

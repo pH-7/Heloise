@@ -42,10 +42,11 @@ class PostTest extends TestCase
         $this->be($user);
 
         /** @var PostModel $post */
-        $post = factory(PostModel::class)->make();
-        $this->post(route('post.create'), $post->toArray());
+        $post = factory(PostModel::class)->create();
+        $this->post(route('post.store'), $post->toArray());
         $response = $this->get(route('post.show', $post->id));
         $response->assertSee($post->title);
+        $response->assertSee($post->body);
     }
 
     public function testCanUserNotCreatePost(): void
@@ -59,7 +60,7 @@ class PostTest extends TestCase
         /** @var PostModel $post */
         $post = factory(PostModel::class)->make();
 
-        $this->post(route('post.create'), $post->toArray());
+        $this->post(route('post.store'), $post->toArray());
     }
 
     public function testCanUserEditPost(): void
@@ -70,8 +71,8 @@ class PostTest extends TestCase
         $this->be($user);
 
         /** @var PostModel $post */
-        $post = factory(PostModel::class)->make();
-        $this->post(route('post.edit', $post->id), $post->toArray());
+        $post = factory(PostModel::class)->create();
+        $this->put(route('post.update', $post->id), $post->toArray());
         $response = $this->get(route('post.edit', $post->id));
         $response->assertSee('Edit Post | ' . $post->title);
     }
@@ -85,9 +86,9 @@ class PostTest extends TestCase
         factory(UserModel::class)->create();
 
         /** @var PostModel $post */
-        $post = factory(PostModel::class)->make();
+        $post = factory(PostModel::class)->create();
 
-        $this->post(route('post.edit', $post->id), $post->toArray());
+        $this->put(route('post.update', $post->id), $post->toArray());
     }
 
     public function testCanUserDeletePost(): void
@@ -98,10 +99,10 @@ class PostTest extends TestCase
         $this->be($user);
 
         /** @var PostModel $post */
-        $post = factory(PostModel::class)->make();
-        $this->post(route('post.destroy', $post->id), $post->toArray());
-        $response = $this->get(route('post.destroy', $post->id));
-        $response->assertStatus(Response::HTTP_OK);
+        $post = factory(PostModel::class)->create();
+        $this->delete(route('post.destroy', $post->id), $post->toArray());
+        $this->assertDatabaseMissing('posts', ['id' => $post->id]);
+        $this->assertSame(0, $post::count());
     }
 
     public function testCanUserNotDeletePost(): void
@@ -113,9 +114,9 @@ class PostTest extends TestCase
         factory(UserModel::class)->create();
 
         /** @var PostModel $post */
-        $post = factory(PostModel::class)->make();
+        $post = factory(PostModel::class)->create();
 
-        $this->post(route('post.destroy', $post->id), $post->toArray());
+        $this->delete(route('post.destroy', $post->id), $post->toArray());
     }
 
     public function testCanUserNotAccessToCreatePostPage(): void
