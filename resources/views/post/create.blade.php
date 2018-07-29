@@ -14,9 +14,9 @@
                         {{ Form::token() }}
                         {{ Form::hidden('_method', 'POST') }}
 
-                            <div class="form-group">
-                                {{ Form::text('title', null, ['placeholder' => 'What are you writing about..?', 'class' => 'input-block', 'required']) }}
-                            </div>
+                        <div class="form-group">
+                            {{ Form::text('title', null, ['placeholder' => 'What are you writing about..?', 'class' => 'input-block', 'required']) }}
+                        </div>
 
                         <div class="form-group">
                             {!! Form::textarea('body', null, ['placeholder' => 'Be inspire! Write your thoughts...', 'class' => 'input-block', 'required']) !!}
