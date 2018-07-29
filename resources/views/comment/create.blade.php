@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            {!! Form::open(['action' => ['CommentController@store', $post->id]]) !!}
+            {!! Form::open(['route' => ['comment.store', $post_id]]) !!}
             {{ Form::token() }}
             {{ Form::hidden('_method', 'POST') }}
 

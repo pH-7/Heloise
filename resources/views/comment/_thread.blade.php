@@ -2,7 +2,7 @@
     <div class="col-md-8 col-md-offset-2">
         <p class="text-center">
             <strong>
-                <a href="{{ action('CommentController@create') }}" rel="nofollow">Add a Comment</a>
+                <a href="{{ route('comment.create', ['postId' => $post->id]) }}" rel="nofollow">Add a Comment</a>
             </strong>
         </p>
 
