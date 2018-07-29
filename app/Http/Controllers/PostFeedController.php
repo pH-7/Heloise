@@ -18,11 +18,15 @@ class PostFeedController extends Controller
 
     public function index(): Response
     {
-        $posts = Cache::remember(self::CACHE_ID, self::CACHE_LIFETIME_IN_MINUTES, function () {
-            return PostModel::latest()
-                ->limit(self::MAX_ITEMS_SHOWN)
-                ->get();
-        });
+        $posts = Cache::remember(
+            self::CACHE_ID,
+            self::CACHE_LIFETIME_IN_MINUTES,
+            function () {
+                return PostModel::latest()
+                    ->limit(self::MAX_ITEMS_SHOWN)
+                    ->get();
+            }
+        );
 
         return response()
             ->view(
