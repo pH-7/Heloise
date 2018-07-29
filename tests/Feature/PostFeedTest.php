@@ -10,9 +10,11 @@ use Tests\TestCase;
 
 class PostFeedTest extends TestCase
 {
+    private const URI_FEED_PATH_NAME = '/feed';
+
     public function testCanReachFeedPage(): void
     {
-        $response = $this->get('/feed');
+        $response = $this->get(self::URI_FEED_PATH_NAME);
         $response->assertStatus(StatusCode::OK);
     }
 
@@ -20,7 +22,7 @@ class PostFeedTest extends TestCase
     {
         $post = factory(PostModel::class)->create();
 
-        $response = $this->get('/feed');
+        $response = $this->get(self::URI_FEED_PATH_NAME);
         $response->assertStatus(StatusCode::OK);
         $response->assertSee($post->title);
     }
