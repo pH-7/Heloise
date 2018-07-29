@@ -12,8 +12,6 @@ use Tests\TestCase;
 
 class PostTest extends TestCase
 {
-    private const URI_POST_PATH_NAME = '/post/';
-
     public function testCanVisitorSeeHomepage(): void
     {
         $post = factory(PostModel::class)->create();
@@ -27,7 +25,7 @@ class PostTest extends TestCase
     {
         $post = factory(PostModel::class)->create();
 
-        $response = $this->get(self::URI_POST_PATH_NAME . $post->id);
+        $response = $this->get(route('post.show', $post->id));
         $response->assertStatus(StatusCode::OK);
         $response->assertSee($post->title);
     }
@@ -41,8 +39,8 @@ class PostTest extends TestCase
 
         /** @var PostModel $post */
         $post = factory(PostModel::class)->make();
-        $this->post(self::URI_POST_PATH_NAME, $post->toArray());
-        $response = $this->get(self::URI_POST_PATH_NAME . $post->id);
+        $this->post(route('post.create'), $post->toArray());
+        $response = $this->get(route('post.create', $post->id));
         $response->assertSee($post->title);
     }
 
@@ -57,7 +55,7 @@ class PostTest extends TestCase
         /** @var PostModel $post */
         $post = factory(PostModel::class)->make();
 
-        $this->post(self::URI_POST_PATH_NAME, $post->toArray());
+        $this->post(route('post.create'), $post->toArray());
 
     }
 
@@ -70,9 +68,9 @@ class PostTest extends TestCase
 
         /** @var PostModel $post */
         $post = factory(PostModel::class)->make();
-        $this->post(self::URI_POST_PATH_NAME, $post->toArray());
-        $response = $this->get(self::URI_POST_PATH_NAME . $post->id);
-        $response->assertSee($post->title);
+        $this->post(route('post.edit', $post->id), $post->toArray());
+        $response = $this->get(route('post.edit', $post->id));
+        $response->assertSee('Edit Post | ' . $post->title);
     }
 
     public function testCanUserNotEditPost(): void
@@ -86,13 +84,13 @@ class PostTest extends TestCase
         /** @var PostModel $post */
         $post = factory(PostModel::class)->make();
 
-        $this->post(self::URI_POST_PATH_NAME, $post->toArray());
+        $this->post(route('post.edit'), $post->toArray());
 
     }
 
     public function testCanUserNotAccessToCreatePostPage(): void
     {
-        $this->get(self::URI_POST_PATH_NAME . 'create')
+        $this->get(route('post.create'))
             ->assertRedirect('/login');
     }
 
@@ -103,11 +101,8 @@ class PostTest extends TestCase
         $comment = factory(CommentModel::class)
             ->create(['post_id' => $post->id]);
 
-        $response = $this->get(self::URI_POST_PATH_NAME . $post->id);
+        $response = $this->get(route('post.show', $post->id));
 
         $response->assertSee($comment->body);
     }
 }
-
-
-
