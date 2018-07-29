@@ -27,7 +27,7 @@ class CommentController extends Controller
             'body' => 'required',
         ]);
 
-		CommentModel::create(
+        CommentModel::create(
             [
                 'post_id' => $postId,
                 'user_id' => auth()->id(),
