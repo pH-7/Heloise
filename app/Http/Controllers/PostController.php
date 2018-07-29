@@ -53,7 +53,8 @@ class PostController extends Controller
             'body' => $request->input('body')
         ]);
 
-        return redirect('/' . $post->id)
+        return redirect()
+            ->action('PostController@show', $post->id)
             ->with('success', 'Post added successfully!');
     }
 

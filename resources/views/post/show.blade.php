@@ -13,7 +13,7 @@
         @auth
             <hr />
             <div class="text-center">
-                <a href="{{ route('edit', ['id' => $post->id]) }}">
+                <a href="{{ action('PostController@edit', $post->id) }}">
                     <button class="paper-btn">Edit Post</button>
                 </a>
 
