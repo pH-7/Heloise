@@ -15,7 +15,7 @@
                             @empty
                                 @auth
                                     <h4 class="text-center">
-                                        ⭐ <a href="{{ route('post.create') }}">Create A Post</a> ⭐
+                                        ⭐<a href="{{ route('post.create') }}">Add A Post</a>⭐
                                     </h4>
                                 @endauth
                                 @guest
