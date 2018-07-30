@@ -16,7 +16,7 @@
                     {{ Form::submit('Edit Post', ['class' => 'paper-btn']) }}
                     {!! Form::close() !!}
 
-                    {!! Form::open(['route' => ['post.destroy',  $post->id], 'class' => 'inline'])!!}
+                    {!! Form::open(['route' => ['post.destroy',  $post->id], 'class' => 'inline', 'onclick' => 'return confirm("Do you really want to delete it?")'])!!}
                     {{ Form::token() }}
                     {{ Form::hidden('_method', 'DELETE') }}
                     {{ Form::submit('Delete Post', ['class' => 'paper-btn btn-danger']) }}
