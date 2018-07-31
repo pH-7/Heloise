@@ -22,6 +22,7 @@ class CreateCommentsTable extends Migration
             $table->integer('user_id')->unsigned();
         });
 
+        // Update the existing table with foreign key
         Schema::table('comments', function (Blueprint $table) {
             $table->foreign('post_id')->references('id')->on('posts');
         });

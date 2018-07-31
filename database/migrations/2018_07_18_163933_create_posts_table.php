@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->integer('user_id')->unsigned();
         });
 
+        // Update the existing table with foreign key
         Schema::table('posts', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
