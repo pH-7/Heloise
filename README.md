@@ -1,6 +1,6 @@
 # Héloïse: Simple Laravel Blog
 
-*Héloïse is a simple Blog system with comments and RSS feed. Written on Laravel 5.6, PaperCSS and VueJS.*
+*Héloïse is a simple Blog system with comments and RSS feed. Written on Laravel 5.6 and used PaperCSS, MongoDB and VueJS.*
 
 
 ## Requirements
