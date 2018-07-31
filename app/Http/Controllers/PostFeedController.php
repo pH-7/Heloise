@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Post as PostModel;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
 
@@ -31,7 +32,7 @@ class PostFeedController extends Controller
             );
     }
 
-    private function retrievePostsFromCache(): array
+    private function retrievePostsFromCache(): Collection
     {
         return Cache::remember(
             self::CACHE_ID,
