@@ -9,7 +9,7 @@
                         @forelse($posts as $post)
                             <article>
                                 <h3 class="text-center"><a class="article-title" href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a></h3>
-                                <div class="collapsible-body text-center">{{ mb_strimwidth($post->body, 0, 300, '...') }}</div>
+                                <div class="collapsible-body text-center">{{ str_limit($post->body, 400, '...') }}</div>
                             </article>
                             <hr />
                             @empty
