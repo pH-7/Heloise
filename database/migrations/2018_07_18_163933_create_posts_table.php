@@ -18,7 +18,9 @@ class CreatePostsTable extends Migration
             $table->timestamps();
             $table->string('title', 50);
             $table->text('body');
+
             $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
