@@ -20,7 +20,7 @@ class PostTest extends TestCase
     {
         $post = factory(PostModel::class)->create();
 
-        $response = $this->get('/');
+        $response = $this->get(route('homepage'));
         $response->assertStatus(Response::HTTP_OK);
         $response->assertSee($post->title);
     }
