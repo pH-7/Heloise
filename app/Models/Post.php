@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Jenssegers\Mongodb\Eloquent\Model as MongoModel;
 
-class Post extends Model
+class Post extends MongoModel
 {
+    protected $connection = 'mongodb';
+
     /**
      * The attributes that aren't mass assignable.
      *
