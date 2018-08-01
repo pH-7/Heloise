@@ -12,6 +12,11 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
+     * @var string
+     */
+    protected $connection = 'mongodb';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
