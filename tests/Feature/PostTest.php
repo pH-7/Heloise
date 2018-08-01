@@ -36,8 +36,6 @@ class PostTest extends TestCase
 
     public function testCanUserCreatePost(): void
     {
-        $this->withoutExceptionHandling();
-
         $user = factory(UserModel::class)->create();
         $this->be($user);
 
@@ -52,7 +50,6 @@ class PostTest extends TestCase
     public function testCanUserNotCreatePost(): void
     {
         $this->withoutExceptionHandling();
-
         $this->expectException(AuthenticationException::class);
 
         factory(UserModel::class)->create();
@@ -65,8 +62,6 @@ class PostTest extends TestCase
 
     public function testCanUserEditPost(): void
     {
-        $this->withoutExceptionHandling();
-
         $user = factory(UserModel::class)->create();
         $this->be($user);
 
@@ -80,7 +75,6 @@ class PostTest extends TestCase
     public function testCanUserNotEditPost(): void
     {
         $this->withoutExceptionHandling();
-
         $this->expectException(AuthenticationException::class);
 
         factory(UserModel::class)->create();
@@ -93,8 +87,6 @@ class PostTest extends TestCase
 
     public function testCanUserDeletePost(): void
     {
-        $this->withoutExceptionHandling();
-
         $user = factory(UserModel::class)->create();
         $this->be($user);
 
@@ -108,7 +100,6 @@ class PostTest extends TestCase
     public function testCanUserNotDeletePost(): void
     {
         $this->withoutExceptionHandling();
-
         $this->expectException(AuthenticationException::class);
 
         factory(UserModel::class)->create();
