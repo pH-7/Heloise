@@ -29,3 +29,8 @@
 ![Add, Edit and Delete Blog Posts](_screenshots/blog-post-heloise-laravel.png)
 
 ![Add Comments to Blog Posts](_screenshots/blog-add-comment.png)
+
+
+## License
+
+"Héloïse" is generously distributed under [MIT License](http://opensource.org/licenses/mit-license.php).
