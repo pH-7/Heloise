@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Request\PostRequest;
 use App\Models\Post as PostModel;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PostController extends Controller
@@ -40,13 +40,8 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(PostRequest $request): RedirectResponse
     {
-        $this->validate($request, [
-            'title' => 'required|max:50',
-            'body' => 'required'
-        ]);
-
         $post = PostModel::create([
             'user_id' => auth()->user()->id,
             'title' => $request->input('title'),
@@ -81,13 +76,8 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(UpdatePostRequest $request, $id): RedirectResponse
     {
-        $this->validate($request, [
-            'title' => 'required|max:50',
-            'body' => 'required'
-        ]);
-
         $post = PostModel::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
